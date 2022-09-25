@@ -27,4 +27,6 @@ qemu-system-ppc \
 	-M $MACH \
 	-m $MEM \
 	-prom-env 'boot-args=-v' \
+	-device VGA,edid=on \
+	-g 1440x900x32 \
 	-drive file=$HDA,format=raw,media=disk $CDFLAG $BOOTARG
