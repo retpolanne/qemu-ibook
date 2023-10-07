@@ -12,21 +12,26 @@ if [ "$CDROM" ]; then
 fi
 
 echo $CDROM | grep -i "os9" && MEM=512 && MACH="mac99"
+echo $HDA | grep -i "os9" && MEM=512 && MACH="mac99"
 
 echo qemu-system-ppc \
-	-L pc-bios \
-	-boot $BOOT \
-	-M $MACH \
-	-m $MEM \
-	-prom-env 'boot-args=-v' \
-	-drive file=$HDA,format=raw,media=disk $CDFLAG $BOOTARG
-
-qemu-system-ppc \
-	-L pc-bios \
 	-boot $BOOT \
 	-M $MACH \
 	-m $MEM \
 	-prom-env 'boot-args=-v' \
 	-device VGA,edid=on \
+	-prom-env "vga-ndrv?=true" \
 	-g 1440x900x32 \
+	-netdev user,id=network0 -device sungem,netdev=network0 \
+	-drive file=$HDA,format=raw,media=disk $CDFLAG $BOOTARG
+
+qemu-system-ppc \
+	-boot $BOOT \
+	-M $MACH \
+	-m $MEM \
+	-prom-env 'boot-args=-v' \
+	-device VGA,edid=on \
+	-prom-env "vga-ndrv?=true" \
+	-g 1440x900x32 \
+	-netdev user,id=network0 -device sungem,netdev=network0 \
 	-drive file=$HDA,format=raw,media=disk $CDFLAG $BOOTARG
