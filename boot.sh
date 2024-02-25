@@ -17,7 +17,7 @@ echo qemu-system-ppc \
 	-boot $BOOT \
 	-M $MACH \
 	-m $MEM \
-	-L /opt/homebrew/Cellar/qemu/8.1.1/share/qemu \
+	-L /opt/homebrew/Cellar/qemu/8.2.1/share/qemu \
 	-prom-env 'boot-args=-v' \
 	-device VGA,edid=on \
 	-prom-env "vga-ndrv?=true" \
@@ -30,12 +30,13 @@ echo qemu-system-ppc \
 qemu-system-ppc \
 	-boot $BOOT \
 	-M $MACH \
+	-cpu G3 \
 	-m $MEM \
-	-L /opt/homebrew/Cellar/qemu/8.1.1/share/qemu \
+	-L /opt/homebrew/Cellar/qemu/8.2.1/share/qemu \
 	-prom-env 'boot-args=-v' \
 	-device VGA,edid=on,vgamem_mb=64,xres=1440,yres=900 \
 	-prom-env "vga-ndrv?=true" \
-	-g 1440x900x32 \
+	-g 1512x982x32 \
 	-accel tcg,tb-size=2048 \
 	-netdev user,id=network0 -device sungem,netdev=network0 \
 	-usb -device usb-mouse -device usb-kbd \

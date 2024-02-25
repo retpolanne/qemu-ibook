@@ -6,3 +6,5 @@ Brewfile.lock.json
 Network Trash Folder/
 TheVolumeSettingsFolder/
 qemu-system-ppc
+.DS_Store
+share
